@@ -50,7 +50,7 @@
     input.val-inline:focus, select.val-inline:focus { background: #eff6ff; border-bottom-color: var(--primary); box-shadow: 0 1px 0 0 var(--primary); }
     input.val-inline::placeholder { color: #94a3b8; font-weight: 400; font-size: 0.9em; font-style: italic; }
     
-    select.val-inline { cursor: pointer; appearance: none; -webkit-appearance: none; padding-right: 18px; background-image: url("data:image/svg+xml;utf8,<svg fill='%231e3a8a' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>"); background-repeat: no-repeat; background-position-x: 100%; background-position-y: center; background-size: 14px;}
+    select.val-inline { cursor: pointer; appearance: none; -webkit-appearance: none; padding-right: 18px; background-image: url("data:image/svg+xml;utf8,<svg fill='%231e3a8a' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/path><path d='M0 0h24v24H0z' fill='none'/></svg>"); background-repeat: no-repeat; background-position-x: 100%; background-position-y: center; background-size: 14px;}
 
     span.val-inline { display: inline-block; cursor: default; }
     span.val-inline:empty::before { content: "\200b"; } 
@@ -69,7 +69,6 @@
     .l-cut-line { width: 0; height: 100%; border-left: 1px dashed #cbd5e1; position: relative; z-index: 5;}
     .l-cut-icon { position: absolute; top: -10px; left: -7px; font-size: 14px; color: #94a3b8; background: var(--paper); padding: 5px 0; }
     
-    /* MARCA D'ÁGUA APRIMORADA - PAISAGEM */
     .l-watermark { 
       position: absolute; 
       top: 50%; left: 50%; 
@@ -100,12 +99,15 @@
     .l-title-box { text-align: center; margin-bottom: 20px; }
     .l-title-1 { font-size: 15px; font-weight: 700; text-transform: uppercase; margin: 0; letter-spacing: 1px; color: var(--ink); border-bottom: 2px solid var(--ink); display: inline-block; padding-bottom: 3px;}
     
-    .l-content-body { line-height: 1.9; font-size: 13.5px; margin-bottom: 10px; color: var(--ink);}
-    .l-line-flex { display: flex; align-items: baseline; margin-bottom: 8px; width: 100%; gap: 4px; flex-wrap: nowrap;}
+    .l-content-body { line-height: 1.9; font-size: 14px; margin-bottom: 10px; color: var(--ink);}
+    
+    /* AQUI FICA O SEGREDO DO ESPAÇAMENTO PERFEITO */
+    .l-line-flex { display: flex; align-items: baseline; justify-content: flex-start; margin-bottom: 8px; width: 100%; gap: 6px; flex-wrap: wrap;}
     .l-line-flex span { white-space: nowrap; }
     
-    .l-input { font-size: 14px; flex-grow: 1; }
-    .l-input.text-left { text-align: left; padding-left: 5px; }
+    .l-input { font-size: 14.5px; }
+    .l-input-fill { flex-grow: 1; } /* Apenas quem deve esticar ganha isso */
+    .text-left { text-align: left; padding-left: 5px; }
     
     .l-checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 15px; padding-left: 5px; }
     .l-check-item { font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; user-select: none; font-weight: 500;}
@@ -123,18 +125,19 @@
     .sheet-portrait {
       width: 210mm; height: 297mm; margin: 30px auto; background: var(--paper); padding: 25mm 20mm;
       box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1); position: relative; box-sizing: border-box;
-      font-family: 'Lora', serif; font-size: 17px; line-height: 1.8; color: var(--ink); z-index: 1; border-radius: 4px;
+      font-family: 'Lora', serif; font-size: 17px; color: var(--ink); z-index: 1; border-radius: 4px;
       overflow: hidden;
     }
     
     .p-formal-border { position: absolute; top: 12mm; left: 12mm; right: 12mm; bottom: 12mm; border: 1px solid #cbd5e1; outline: 1px solid #cbd5e1; outline-offset: -4px; pointer-events: none; z-index: 0; }
     
-    /* MARCA D'ÁGUA APRIMORADA - RETRATO */
     .p-watermark { 
       position: absolute; 
-      top: 50%; left: 50%; 
-      transform: translate(-50%, -50%); 
-      width: 60%; 
+      top: 50%; 
+      right: -40px;
+      left: auto;
+      transform: translateY(-50%);
+      width: 500px;
       opacity: 0.04; 
       filter: invert(1) grayscale(100%); 
       pointer-events: none; 
@@ -154,7 +157,14 @@
     
     .p-title { font-family: 'Inter', sans-serif; font-size: 20px; text-align: center; color: var(--ink); font-weight: 700; margin: 0 0 45px; text-transform: uppercase; letter-spacing: 2px; position: relative; z-index: 1;}
     
-    .p-body { color: var(--ink); text-align: justify; margin-top: 30px; position: relative; z-index: 1;}
+    .p-body { 
+      color: var(--ink); 
+      text-align: left; 
+      line-height: 1.85; 
+      margin-top: 30px; 
+      position: relative; 
+      z-index: 1;
+    }
     
     .p-inline-input { font-family: 'Lora', serif; font-size: 18px; font-weight: 700; color: var(--pen-ink); text-align: center; border-bottom: 1px solid #94a3b8;}
     .p-inline-input:focus { border-bottom-color: var(--primary); background: transparent; box-shadow: none;}
@@ -228,7 +238,6 @@
       body { background: #ffffff !important; padding: 0; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .no-print { display: none !important; }
       
-      /* Mantém as caixas com aparência de texto formal impresso */
       input.val-inline, select.val-inline, span.val-inline { border: none !important; background: transparent !important; color: #000000 !important; padding: 0 !important;}
       input.val-inline::placeholder { color: transparent !important; }
       select.val-inline { appearance: none; -webkit-appearance: none; background-image: none !important; }
@@ -246,7 +255,6 @@
       body.model-formal .p-formal-border { border: 1px solid #475569; outline: 1px solid #475569; }
       body.model-formal .p-inline-input { border-bottom: 1px dotted #94a3b8 !important; color: #000 !important;}
       
-      /* Garante a impressão da marca d'água oficial */
       .p-watermark, .l-watermark { opacity: 0.05 !important; filter: invert(1) grayscale(100%) !important; }
       .p-stamp { opacity: 0.95 !important; mix-blend-mode: multiply !important; filter: grayscale(100%) !important;}
     }
@@ -254,6 +262,7 @@
 </head>
 <body class="model-2vias">
 
+  <!-- Regra estrita de tamanho de página A4 para o navegador -->
   <style id="print-page-style">@page { size: A4 landscape; margin: 0; }</style>
 
   <div class="top-hint no-print">
@@ -262,8 +271,12 @@
   
   <div id="feedback-container" class="feedback-container no-print"></div>
 
+  <!-- ===============================================
+       DOCUMENTO: MODELO 2 VIAS (PAISAGEM)
+       =============================================== -->
   <div id="doc-2vias" class="sheet-landscape">
     
+    <!-- VIA 1 (Editável) -->
     <div class="l-via-container">
       <img src="https://www.caieiras.sp.gov.br/img/brasao-branco.png" class="l-watermark" alt="Brasão"/>
       <div class="l-content-layer">
@@ -289,11 +302,11 @@
         <div class="l-content-body">
           <div class="l-line-flex">
             <span>Declaro que o(a) Sr.(a)</span> 
-            <input type="text" class="val-inline l-input text-left sync-nome" data-sync="nome" placeholder="Nome Completo do Paciente">
+            <input type="text" class="val-inline l-input l-input-fill text-left sync-nome" data-sync="nome" placeholder="Nome Completo do Paciente">
           </div>
           <div class="l-line-flex">
             <span>portador(a) do CPF nº</span> 
-            <input type="text" class="val-inline l-input text-left sync-cpf mask-cpf" data-sync="cpf" placeholder="000.000.000-00" style="width: 140px;" maxlength="14">
+            <input type="text" class="val-inline l-input text-left sync-cpf mask-cpf" data-sync="cpf" placeholder="000.000.000-00" style="width: 135px;" maxlength="14">
           </div>
           <div class="l-line-flex">
             <span>esteve na Unidade Básica de Saúde no período das</span> 
@@ -302,7 +315,7 @@
           </div>
           <div class="l-line-flex">
             <span>na data de</span> 
-            <input type="text" class="val-inline l-input sync-data" data-sync="data" placeholder="DD/MM/AAAA" style="width: 100px;" maxlength="10"> 
+            <input type="text" class="val-inline l-input sync-data" data-sync="data" placeholder="DD/MM/AAAA" style="width: 95px;" maxlength="10"> 
             <span>para realização de:</span>
           </div>
 
@@ -312,7 +325,7 @@
             <div class="l-check-item" data-proc-group="Acompanhamento"><div class="l-chk-box"></div> Acompanhamento Familiar</div>
             <div class="l-check-item" data-proc-group="Outro" style="grid-column: span 2;">
               <div class="l-chk-box"></div> Outro:
-              <input type="text" class="val-inline l-input text-left sync-outro" data-sync="outro" placeholder="Especifique o motivo..." style="margin-left: 5px;" disabled>
+              <input type="text" class="val-inline l-input l-input-fill text-left sync-outro" data-sync="outro" placeholder="Especifique o motivo..." style="margin-left: 5px;" disabled>
             </div>
           </div>
         </div>
@@ -330,8 +343,10 @@
       </div>
     </div>
 
+    <!-- LINHA DE CORTE -->
     <div class="l-cut-line"><span class="l-cut-icon">✂</span></div>
 
+    <!-- VIA 2 (Espelho automático - TEXTO PURO) -->
     <div class="l-via-container">
       <img src="https://www.caieiras.sp.gov.br/img/brasao-branco.png" class="l-watermark" alt="Brasão"/>
       <div class="l-content-layer">
@@ -357,11 +372,11 @@
         <div class="l-content-body">
           <div class="l-line-flex">
             <span>Declaro que o(a) Sr.(a)</span> 
-            <span class="val-inline l-input text-left sync-nome" data-sync="nome"></span>
+            <span class="val-inline l-input l-input-fill text-left sync-nome" data-sync="nome"></span>
           </div>
           <div class="l-line-flex">
             <span>portador(a) do CPF nº</span> 
-            <span class="val-inline l-input text-left sync-cpf" data-sync="cpf" style="width: 140px;"></span>
+            <span class="val-inline l-input text-left sync-cpf" data-sync="cpf" style="width: 135px;"></span>
           </div>
           <div class="l-line-flex">
             <span>esteve na Unidade Básica de Saúde no período das</span> 
@@ -370,7 +385,7 @@
           </div>
           <div class="l-line-flex">
             <span>na data de</span> 
-            <span class="val-inline l-input sync-data" data-sync="data" style="width: 100px;"></span> 
+            <span class="val-inline l-input sync-data" data-sync="data" style="width: 95px;"></span> 
             <span>para realização de:</span>
           </div>
 
@@ -380,7 +395,7 @@
             <div class="l-check-item" data-proc-group="Acompanhamento" style="pointer-events: none;"><div class="l-chk-box"></div> Acompanhamento Familiar</div>
             <div class="l-check-item" data-proc-group="Outro" style="grid-column: span 2; pointer-events: none;">
               <div class="l-chk-box"></div> Outro:
-              <span class="val-inline l-input text-left sync-outro" data-sync="outro" style="margin-left: 5px;"></span>
+              <span class="val-inline l-input l-input-fill text-left sync-outro" data-sync="outro" style="margin-left: 5px;"></span>
             </div>
           </div>
         </div>
@@ -399,6 +414,9 @@
   </div>
 
 
+  <!-- ===============================================
+       DOCUMENTO: MODELO FORMAL (RETRATO)
+       =============================================== -->
   <div class="sheet-portrait" id="doc-formal">
     <div class="p-formal-border"></div>
     <img class="p-watermark" src="https://www.caieiras.sp.gov.br/img/brasao-branco.png" alt="Marca d'água" crossorigin="anonymous" />
@@ -420,18 +438,19 @@
     <div class="p-body">
       <p>
         Declaramos, para os devidos fins, que 
-        <input type="text" class="val-inline p-inline-input sync-nome" data-sync="nome" style="width: 360px;" placeholder="Nome Completo">, 
+        <input type="text" class="val-inline p-inline-input sync-nome" data-sync="nome" style="width: 300px;" placeholder="Nome Completo">, 
         portador(a) do CPF nº 
-        <input type="text" class="val-inline p-inline-input sync-cpf mask-cpf" data-sync="cpf" style="width: 180px;" placeholder="000.000.000-00" maxlength="14">, 
+        <input type="text" class="val-inline p-inline-input sync-cpf mask-cpf" data-sync="cpf" style="width: 150px;" placeholder="000.000.000-00" maxlength="14">, 
         compareceu à <strong>UBS Morro Grande</strong>, na data de 
-        <input type="text" class="val-inline p-inline-input sync-data" data-sync="data" style="width: 130px; font-size:17px; font-family:'Inter',sans-serif;" placeholder="DD/MM/AAAA" maxlength="10">, 
+        <input type="text" class="val-inline p-inline-input sync-data" data-sync="data" style="width: 110px; font-size:17px; font-family:'Inter',sans-serif;" placeholder="DD/MM/AAAA" maxlength="10">, 
         no período compreendido entre 
-        <input type="text" class="val-inline p-inline-input sync-inicio" data-sync="inicio" style="width: 70px; font-family:'Inter',sans-serif;" placeholder="00:00" maxlength="5"> e 
-        <input type="text" class="val-inline p-inline-input sync-fim" data-sync="fim" style="width: 70px; font-family:'Inter',sans-serif;" placeholder="00:00" maxlength="5">, 
+        <input type="text" class="val-inline p-inline-input sync-inicio" data-sync="inicio" style="width: 60px; font-family:'Inter',sans-serif;" placeholder="00:00" maxlength="5"> e 
+        <input type="text" class="val-inline p-inline-input sync-fim" data-sync="fim" style="width: 60px; font-family:'Inter',sans-serif;" placeholder="00:00" maxlength="5">, 
         para a realização de 
         
-        <select class="val-inline p-inline-input sync-proc-formal" style="width: 300px; font-size:17px;">
-           </select>.
+        <select class="val-inline p-inline-input sync-proc-formal" style="width: 260px; font-size:17px;">
+           <!-- Opções criadas via JS -->
+        </select>.
       </p>
       
       <div class="no-print" style="margin-top:20px; font-size:13px; text-align:right; font-family:'Inter', sans-serif;">
@@ -462,6 +481,9 @@
   </div>
 
 
+  <!-- ===================================================
+       BARRA FLUTUANTE DE CONTROLES
+       =================================================== -->
   <div class="bottom-bar no-print">
     <button class="btn btn-toggle" id="btn-toggle-model"><i class="fas fa-exchange-alt"></i> Mudar Modelo (2 Vias / Formal)</button>
     <button class="btn btn-clear" id="btn-clear"><i class="fas fa-eraser"></i> Nova / Limpar</button>
@@ -471,6 +493,7 @@
   </div>
 
 
+  <!-- MODAL WHATSAPP -->
   <div id="modal-wa" class="modal-overlay no-print">
     <div class="modal-content">
       <h2><i class="fab fa-whatsapp"></i> Enviar via WhatsApp</h2>
